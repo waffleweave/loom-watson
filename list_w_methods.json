@@ -1,0 +1,43 @@
+{
+    "catagory":"documentation",
+    "topic":"lists",
+    
+    "methods":{
+        "append":{
+            "signature":"list.append(x)",
+            "description":"Add an item to the end of the list; equivalent to a[len(a):] = [x]."
+        },
+        "extend":{
+            "signature":"list.extend(L)",
+            "description":"Extend the list by appending all the items in the given list; equivalent to a[len(a):] = L."
+        },
+        "insert":{
+            "signature":"list.insert(i,x)",
+            "description":"Insert an item at a given position. The first argument is the index of the element before which to insert, so a.insert(0, x) inserts at the front of the list, and a.insert(len(a), x) is equivalent to a.append(x)."
+        },
+        "remove":{
+            "signature":"list.remove(x)",
+            "description":"Remove the first item from the list whose value is x. It is an error if there is no such item."
+        },
+        "pop":{
+            "signature":"list.pop([i])",
+            "description":"Remove the item at the given position in the list, and return it. If no index is specified, a.pop() removes and returns the last item in the list. (The square brackets around the i in the method signature denote that the parameter is optional, not that you should type square brackets at that position. You will see this notation frequently in the Python Library Reference.)"
+        },
+        "index":{
+            "signature":"list.index(x)",
+            "description":"Return the index in the list of the first item whose value is x. It is an error if there is no such item."
+        },
+        "count":{
+            "signature":"list.count(x)",
+            "description":"Return the number of times x appears in the list."
+        },
+        "sort":{
+            "signature":"list.sort(cmp=None, key=None, reverse=False)",
+            "description":"Sort the items of the list in place (the arguments can be used for sort customization, see sorted() for their explanation)."
+        },
+        "reverse":{
+            "signature":"list.reverse()",
+            "description":"Reverse the elements of the list, in place."
+        }
+    }
+}
