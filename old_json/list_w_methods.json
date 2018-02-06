@@ -2,7 +2,7 @@
     "category":"documentation",
     "topic":"lists",
     
-    "methods":{
+    "text":{
         "append":{
             "signature":"list.append(x)",
             "description":"Add an item to the end of the list; equivalent to a[len(a):] = [x]."
