@@ -1,83 +1,15 @@
-import numpy as np
-import random
-# k-means, k means, kmeans algorithm
-# Returns an array of centers chosen at random from data    
-def get_rand_centers(data, num_centers):
-    used = set()
-    centers = np.empty(num_centers)
-    
-    for i in range(0, num_centers):
-        t = random.randint(0, len(data)-1)
-        while t in used:
-            t = random.randint(0, len(data)-1)
-        centers[i] = data[t]
-        used.add(t)
-    return centers
-
-# Returns the 'distance' between two values
-def dist(x, y):
-    return (x-y)**2
-
-# Returns an updated centers array
-def update_centers(centers, clusters, data):
-    num_centers = len(centers)
-    data_size = len(data)
-    
-    temp = np.zeros(num_centers)
-    
-    for i in range(0, data_size):
-        temp[int(clusters[i])] += data[i]
-    
-    uniq, counts = np.unique(clusters, return_counts=True)
-    centers = np.true_divide(temp,counts)
-    return centers
-
-
-# Returns an array with the cluster each data point belongs to
-# Checks for empty clusters and reassigned at random from data
-def classify(centers, data):
-    data_size = len(data)
-    cluster_num = len(centers)
-
-    clusters = np.empty(data_size)
-    temp = np.empty(cluster_num)
-
-    for i in range(0, data_size):
-        for j in range(0, cluster_num):
-            temp[j] = dist(centers[j],data[i])
-        clusters[i] = np.argmin(temp)
-        
-    uniq, counts = np.unique(clusters, return_counts=True)
-    while(len(uniq) != len(centers)):
-        reassign = set(range(0, len(centers))) - set(uniq)
-        for i in reassign:
-            centers[i] = data[random.randint(0, len(data)-1)]
-        clusters = classify(centers, data)
-        uniq, counts = np.unique(clusters, return_counts=True)
-    return clusters
-
-
-# The k-means algorithm
-# Returns an array of centers, and an array of associated variances
-def k_means(data, num_centers):
-    centers = get_rand_centers(data, num_centers)
-    old_centers = None
-    iterations = 0
-    while(not np.array_equal(old_centers, centers)):
-        old_centers = np.copy(centers)
-        iterations += 1
-        clusters = classify(centers, data)
-        centers = update_centers(centers, clusters, data)
-    
-    return centers
-
-
-    
-'''
-Sample data
-'''
-A = [8, 5, 3, 1, 9, 6, 0, 7, 4, 2, 5]
-
-centers = k_means(A, 2)
-
-print(centers)
+Uniform-Cost-Search(problem) returns a solution, or failure
+1	node <- a node with STATE = problem.Initial-State, Path-Cost = 0
+2	frontier <- a priority queue ordered by Path-Cost, with node as the only element
+3	explored <- an empty set
+4	loop do
+5		if Empty(frontier) return failure
+6			node <- POP(Frontier) #Chooses the lowest-cost node in frontier
+7		if problem.Goal-Test(node.State) then return Solution(node)
+8		add node.State to explored
+9		for each action in problem.Actions(node.State) do
+10			child <- Child-Node(problem, node, action)
+11			if child.State is not in explored or frontier then
+12				frontier <- Insert(child, frontier)
+13			else if child.State is in frontier with higher Path-Cost then
+14				replace that frontier node with child
